@@ -1,11 +1,10 @@
 import java.util.Random;
-import java.util.random;
 
 public class sorting {
     public static void main(String[] args) {
         Random rand = new Random();
         // bubble
-
+/*
         int[] list = { 1, 5, 3, 6, 32, 27, 54, 13, 7, 19 };
         int[] sortedList = bubble(list);
         for (int i = 0; i < list.length; i++) {
@@ -27,15 +26,18 @@ public class sorting {
         for (int i = 0; i < list3.length; i++) {
             System.out.print(sortedList[i] + ", ");
         }
+            */
         // merge
         System.out.println();
-        int[] list4 = { 1, 2, 9, 5, 1, 3, 5, 7, 2, 4, 6, 0 };
-        /*
-         * for(int i=0; i<10; i++){
-         * list4[i] = rand.nextInt(0, 100);
-         * }
-         */
-        merge(list4, 5, 8, 11);
+        int[] list4 = new int[100];
+        
+        for(int i=0; i<list4.length; i++){
+        list4[i] = rand.nextInt(0, 1000);
+        }/*
+        for (int i = 0; i < list4.length; i++) {
+            System.out.print(list4[i] + ", ");
+        }*/
+        sort(list4, 0, list4.length);
         for (int i = 0; i < list4.length; i++) {
             System.out.print(list4[i] + ", ");
         }
@@ -120,7 +122,14 @@ public class sorting {
         }
         return list4;
     }
-/*
-    public static int[] split(int[] list4, int min, int max) {
-    }*/
+
+    public static int[] sort(int[] list4, int min, int max) {
+        int mid = (max + min)/2;
+        if(max-min == 1){
+            return list4;
+        }
+        sort(list4, min, mid);
+        sort(list4, mid, max);
+        return merge(list4, min, mid, max);
+    }
 }
