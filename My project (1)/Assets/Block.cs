@@ -1,14 +1,17 @@
 using UnityEngine;
 using System.Collections;
+using JetBrains.Annotations;
 public class Block : MonoBehaviour
 {
+    private Manager manager;
     public enum BlockType
     {
         Normal,
         Falling,
         Bounce,
         Kill,
-        Trip
+        Trip,
+        Win
     }
     
     [SerializeField] private BlockType type;
@@ -40,6 +43,7 @@ public class Block : MonoBehaviour
     
      void Start()
     {
+        manager = FindAnyObjectByType<Manager>();
         startPosition = transform.position;
         startRotation = transform.rotation;
         rb = GetComponent<Rigidbody>();
@@ -75,6 +79,13 @@ public class Block : MonoBehaviour
 
             case BlockType.Trip:
             StartCoroutine(Trip());
+            break;
+
+            case BlockType.Win:
+            if (manager != null)
+            {
+            manager.StopTimer();
+            }
             break;
         }
     }

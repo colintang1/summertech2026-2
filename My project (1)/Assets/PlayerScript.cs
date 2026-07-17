@@ -8,13 +8,13 @@ public class PlayerScript : MonoBehaviour
 
     private Rigidbody rb;
     private Vector2 moveInput;
-    
     private float coyoteTimeCounter;
     [SerializeField] private float coyoteTimeDuration = 0.25f;
 
     [SerializeField] private Transform groundCheckPoint; 
     [SerializeField] private float groundRadius = 0.4f; 
     [SerializeField] private LayerMask groundLayer; 
+    [SerializeField] private GameObject gameManager;
 
     private void Awake()
     {
@@ -76,8 +76,9 @@ public class PlayerScript : MonoBehaviour
 
     public void Die()
     {
-        transform.position = new Vector3(0,0,0);      
+        transform.position = new Vector3(0,3,0);      
         coyoteTimeCounter = 0;
         rb.linearVelocity = new Vector3(0, 0, 0);    
+        gameManager.GetComponent<Manager>().addDeath();
     }
 }
