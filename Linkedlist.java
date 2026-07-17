@@ -2,24 +2,59 @@ public class Linkedlist {
     public int size;
     public Node head;
     public Linkedlist(){
-        size = 0
+        size = 0;
         head = null;
     }
+
     public void add(char value){
-        size += 1
-        count = head.nextN;
-        while(count.nextN != null){
+        if(head != null){
+            size += 1;
+            Node count = head;
+            while(count.nextN != null){
+                count = count.nextN;
+            }
+            count.nextN = new Node(null, value);
+        }
+        else{
+            size += 1;
+            head = new Node(null, value);
+        }
+    }
+
+    public Node get(int index){
+        Node count = head;
+        for(int i = 0; i<(index-1); i++){
             count = count.nextN;
         }
-        count.nextN = Node(null, value);
+        return count;
     }
-    public Node get(index1){
-        int index2 = 0
-        while(index2 != index1){
-            
-            index2 += 1;
+    public Node remove(int index){
+        Node count = head;
+        if(size == 1){
+            Node delete = head;
+            head = null;
+            size -= 1;
+            return delete;
+        }
+        else{
+            for(int i = 0; i<(index-1); i++){
+                count = count.nextN;
+            }
+            Node delete = count.nextN;
+            count.nextN = (count.nextN).nextN;
+            size -= 1;
+            return delete;
         }
         
-        return Node;
+
+    }
+    public String toString(){
+        String str = "";
+        Node count = head;
+        for(int i = 0; i<size; i++){
+            str += count.value + ", ";
+            count = count.nextN;
+        }
+        return str;
     }
 }
